@@ -6,7 +6,7 @@ The following versions of AI Spark are currently supported with security and sta
 
 | Version     | Supported |
 | ----------- | --------- |
-| 0.0.1-alpha | Yes       |
+| x.x.x-alpha ( all ) | :white_check_mark: |
 
 ---
 
