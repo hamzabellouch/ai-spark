@@ -10,7 +10,7 @@
 Compare responses from multiple AI models side-by-side and generate a final unified answer.
 </p>
 
----
+
 
 ## Overview
 
@@ -20,7 +20,7 @@ The platform is designed to help students, researchers, developers, and professi
 
 Currently available for Windows.
 
----
+
 
 ## Features
 
@@ -80,7 +80,7 @@ Supported languages:
 
 AI Spark can connect to existing browser sessions when available, avoiding unnecessary browser restarts and preserving active tabs.
 
----
+
 
 ## Screenshots
 
@@ -92,7 +92,7 @@ screenshots/chat.png
 screenshots/deepthink.png
 ```
 
----
+
 
 ## Installation
 
@@ -106,7 +106,7 @@ screenshots/deepthink.png
 AI Spark.exe
 ```
 
----
+
 
 ## Requirements
 
@@ -114,7 +114,7 @@ AI Spark.exe
 * Internet connection
 * Supported AI service access
 
----
+
 
 ## Workflow
 
@@ -127,7 +127,7 @@ AI Spark.exe
 4. Review AI responses.
 5. Receive the final synthesized answer.
 
----
+
 
 ## Roadmap
 
@@ -139,7 +139,7 @@ AI Spark.exe
 * Cloud synchronization
 * Advanced search capabilities
 
----
+
 
 ## Author
 
@@ -149,7 +149,7 @@ GitHub: https://github.com/hamzabellouch
 
 LinkedIn: https://www.linkedin.com/in/hamzabellouch
 
----
+
 
 ## License
 
