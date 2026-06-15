@@ -26,7 +26,7 @@ if sys.version_info < (3, 11):
 "
 
 echo "[AI Spark] Installing/updating requirements..."
-$PYTHON_CMD -m pip install -r requirements.txt
+$PYTHON_CMD -m pip install -r src/requirements.txt
 
 # Free up port 8000 if it's already in use
 if command -v lsof >/dev/null 2>&1; then
@@ -41,4 +41,5 @@ echo ""
 echo "Starting AI Spark on http://127.0.0.1:8000"
 echo "Keep this window open while using the program."
 echo ""
+cd src
 $PYTHON_CMD main.py

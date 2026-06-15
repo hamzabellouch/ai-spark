@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="pageTitle">AI Spark | المنسق الذكي</title>
+    <!-- Google Fonts: Inter & Tajawal for Arabic/English typography, Space Mono for terminal vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link to vanilla custom CSS -->
+    <link rel="stylesheet" href="/static/style.css?v=5.3">
+</head>
+<body>
+    <!-- Splash Screen Loader -->
+    <div id="splash-loader" class="loader-container">
+        <div class="loader-content">
+            <span class="loader-letter" style="animation-delay: 0.0s;">A</span>
+            <span class="loader-letter" style="animation-delay: 0.1s;">I</span>
+            <span class="loader-letter" style="animation-delay: 0.2s;">&nbsp;</span>
+            <span class="loader-letter" style="animation-delay: 0.3s;">S</span>
+            <span class="loader-letter" style="animation-delay: 0.4s;">p</span>
+            <span class="loader-letter" style="animation-delay: 0.5s;">a</span>
+            <span class="loader-letter" style="animation-delay: 0.6s;">r</span>
+            <span class="loader-letter" style="animation-delay: 0.7s;">k</span>
+            <div class="loader-circle animate-loaderCircle"></div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <button id="new-chat-btn" class="sidebar-new-chat">
+                <i class="fa-solid fa-plus"></i>
+                <span data-i18n="newChatBtn">محادثة جديدة</span>
+            </button>
+
+            <!-- Sidebar Search Box -->
+            <div class="sidebar-search-box hidden" id="sidebar-search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon-sidebar"></i>
+                <input type="text" id="search-history-input" placeholder="البحث في المحادثات..." data-i18n-placeholder="searchHistoryPlaceholder" />
+            </div>
+
+            <div class="sidebar-history-container">
+                <div class="sidebar-history-list" id="sidebar-history-list">
+                    <!-- History entries are loaded dynamically via app.js -->
+                </div>
+            </div>
+
+
+            <!-- Clear History Button -->
+            <div id="clear-history-btn" class="sidebar-item" role="button" tabindex="0" style="margin-bottom: 5px;">
+                <i class="fa-regular fa-trash-can"></i>
+                <span data-i18n="clearHistoryBtn">مسح السجل</span>
+            </div>
+            
+            <!-- Browser Status Indicator -->
+            <div class="sidebar-item status-indicator" id="status-browser" title="Browser">
+                <div class="browser-icon-wrapper">
+                    <img src="/static/icons/brave.svg" alt="Browser" class="icon-ai" id="browser-icon" style="width: 22px; height: 22px;" />
+                    <span class="status-dot"></span>
+                </div>
+                <span id="browser-name" style="font-size: 13px; text-transform: capitalize; color: var(--text-secondary);">Brave</span>
+            </div>
+            
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Bar Controls -->
+            <!-- Top Bar Controls -->
+            <div class="top-bar">
+                <div class="top-bar-title">
+                    <div class="toolbar-left-group">
+                        <button id="toggle-sidebar-btn" class="btn-toolbar" title="Toggle Sidebar" data-i18n-title="toggleSidebarTitle">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                        <button id="search-history-btn" class="btn-toolbar" title="Search Chats" data-i18n-title="searchChatsTitle">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <button id="new-chat-btn-top" class="btn-toolbar" title="New Chat" data-i18n-title="newChatBtnTitle">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                    <span class="toolbar-logo-text">AI Spark</span>
+                </div>
+                <div class="top-bar-controls">
+                    <!-- Sync Button -->
+                    <button id="launch-browser-btn" class="btn-top" title="Sync">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                        <span data-i18n="syncBtn">المزامنة</span>
+                    </button>
+                    
+                    <span class="control-divider"></span>
+                    
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="btn-top" title="Toggle Theme">
+                        <i class="fa-solid fa-moon" id="theme-icon"></i>
+                        <span data-i18n="themeBtn">مظلم</span>
+                    </button>
+                    
+                    <span class="control-divider"></span>
+                    
+                    <!-- Language Dropdown -->
+                    <select id="language-selector" class="language-dropdown">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Center Welcome Screen / Brand (Custom Segmented Control & Mode Selection) -->
+            <div class="center-wrapper" id="center-wrapper">
+                <div class="welcome-container">
+                    <h1 class="welcome-title" id="welcome-title">
+                        <i class="fa-solid fa-wand-magic-sparkles welcome-logo-icon"></i>
+                        <span id="welcome-text-span" data-i18n="welcomeInstant">Start chatting with Instant</span>
+                    </h1>
+                    
+                    <!-- Mode Switcher Pill -->
+                    <div class="mode-switcher-container">
+                        <div class="mode-bubble" id="mode-bubble"></div>
+                        <button class="btn-mode active" id="mode-instant-btn">
+                            <i class="fa-solid fa-bolt"></i> <span data-i18n="modeInstant">Instant</span>
+                        </button>
+                        <button class="btn-mode" id="mode-expert-btn">
+                            <svg class="mode-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(45 12 12)" />
+                                <ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(-45 12 12)" />
+                                <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+                            </svg>
+                            <span data-i18n="modeExpert">DeepThink</span>
+                        </button>
+                    </div>
+
+                    <!-- Instant Mode: Single Assistant Selection -->
+                    <div class="instant-assistants-container" id="instant-assistants">
+                        <span class="selector-label" data-i18n="selectAssistantLabel">اختر المساعد الفردي للدردشة معه:</span>
+                        <div class="assistant-cards">
+                            <button class="assistant-card active" data-assistant="chatgpt">
+                                <img src="/static/icons/openai.svg" alt="ChatGPT" class="icon-ai" />
+                                <span>ChatGPT</span>
+                            </button>
+                            <button class="assistant-card" data-assistant="gemini">
+                                <img src="/static/icons/gemini.svg" alt="Gemini" class="icon-ai" />
+                                <span>Gemini</span>
+                            </button>
+                            <button class="assistant-card" data-assistant="deepseek">
+                                <img src="/static/icons/deepseek.svg" alt="DeepSeek" class="icon-ai" />
+                                <span>DeepSeek</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Results Area -->
+            <div class="chat-history hidden" id="chat-history">
+                <!-- Dynamically populated turns will be rendered here via app.js -->
+            </div>
+
+            <!-- Progress Indicator Container -->
+            <div class="progress-container hidden" id="progress-container">
+                <div class="progress-title">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                    <span data-i18n="progressTitle">جاري تشغيل عملية البث والتجميع...</span>
+                </div>
+                <div class="progress-steps">
+                    <div class="step-item" id="step-broadcast">
+                        <i class="fa-regular fa-circle"></i>
+                        <span data-i18n="stepBroadcast">بث السؤال للتبويبات المفتوحة...</span>
+                    </div>
+                    <div class="step-item" id="step-collect">
+                        <i class="fa-regular fa-circle"></i>
+                        <span data-i18n="stepCollect">انتظار تجميع الإجابات (ChatGPT, Gemini, DeepSeek)...</span>
+                    </div>
+                    <div class="step-item" id="step-synth">
+                        <i class="fa-regular fa-circle"></i>
+                        <span data-i18n="stepSynth">إرسال الإجابات لـ Claude للتلخيص الموحد...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sticky Prompt Container at the bottom -->
+            <div class="sticky-prompt-container">
+                <!-- File Preview container -->
+                <div id="file-preview-container" class="file-preview-container hidden"></div>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-wand-magic-sparkles search-icon"></i>
+                    <textarea id="prompt-textarea" data-i18n-placeholder="promptPlaceholder" placeholder="اكتب سؤالك هنا بالتفصيل... (مثال: اشرح لي مفهوم الحوسبة السحابية وما هي أنواعها؟)"></textarea>
+                    
+                    <div class="search-actions">
+                        <button id="upload-file-btn" class="btn-action upload-btn" title="Attach Files" data-i18n-title="uploadBtnTitle">
+                            <i class="fa-solid fa-paperclip"></i>
+                        </button>
+                        <input type="file" id="file-input" multiple style="display: none;" accept="image/*,application/pdf,text/*,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+                        <button id="send-prompt-btn" class="btn-submit send-btn" title="Send">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI Toggles Checkboxes inside pill format -->
+                <div class="ai-toggles">
+                    <label class="pill-checkbox">
+                        <input type="checkbox" id="check-chatgpt" checked value="chatgpt">
+                        <img src="/static/icons/openai.svg" alt="ChatGPT" class="icon-ai" /> ChatGPT
+                    </label>
+                    <label class="pill-checkbox">
+                        <input type="checkbox" id="check-gemini" checked value="gemini">
+                        <img src="/static/icons/gemini.svg" alt="Gemini" class="icon-ai" /> Gemini
+                    </label>
+                    <label class="pill-checkbox">
+                        <input type="checkbox" id="check-deepseek" checked value="deepseek">
+                        <img src="/static/icons/deepseek.svg" alt="DeepSeek" class="icon-ai" /> DeepSeek
+                    </label>
+                    <label class="pill-checkbox">
+                        <input type="checkbox" id="toggle-synthesis" checked value="claude">
+                        <img src="/static/icons/claude.svg" alt="Claude" class="icon-ai" /> Claude (Synthesis)
+                    </label>
+                </div>
+
+                <!-- Footer -->
+                <footer class="app-footer">
+                    <p>by continuing, you agree to <span style="text-decoration: underline; color: var(--text-primary);">terms and ethics of use</span> | <span data-i18n="footerText">مبني محلياً بنسبة 100% بدون APIs مدفوعة</span> | AI Spark &copy; 2026</p>
+                </footer>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modal Alert dialog -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title" data-i18n="modalAlertTitle">تنبيه</h3>
+                <span class="close-modal" id="close-modal-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="modal-message" data-i18n="modalAlertMsg">يرجى التأكد من تشغيل المتصفح وفتح التبويبات المطلوبة.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal" id="modal-cancel-btn" style="display: none;" data-i18n="modalCancelBtn">إلغاء</button>
+                <button class="btn-modal primary" id="modal-ok-btn" data-i18n="modalOkBtn">موافق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Turn Template -->
+    <template id="chat-turn-template">
+        <div class="chat-turn">
+            <div class="user-message-container">
+                <div class="user-message-bubble"></div>
+            </div>
+            <div class="ai-responses-container">
+                <!-- Comparison grid for individual models -->
+                <div class="individual-responses-grid">
+                    <div class="answer-card" data-ai="chatgpt">
+                        <div class="card-header">
+                            <h3>
+                                <img src="/static/icons/openai.svg" alt="ChatGPT" class="icon-ai" />
+                                <span data-i18n="chatgptAnswer">إجابة ChatGPT</span>
+                            </h3>
+                            <button class="btn-copy" data-i18n="copyBtn">نسخ</button>
+                        </div>
+                        <div class="card-body"></div>
+                    </div>
+                    
+                    <div class="answer-card" data-ai="gemini">
+                        <div class="card-header">
+                            <h3>
+                                <img src="/static/icons/gemini.svg" alt="Gemini" class="icon-ai" />
+                                <span data-i18n="geminiAnswer">إجابة Gemini</span>
+                            </h3>
+                            <button class="btn-copy" data-i18n="copyBtn">نسخ</button>
+                        </div>
+                        <div class="card-body"></div>
+                    </div>
+                    
+                    <div class="answer-card" data-ai="deepseek">
+                        <div class="card-header">
+                            <h3>
+                                <img src="/static/icons/deepseek.svg" alt="DeepSeek" class="icon-ai" />
+                                <span data-i18n="deepseekAnswer">إجابة DeepSeek</span>
+                            </h3>
+                            <button class="btn-copy" data-i18n="copyBtn">نسخ</button>
+                        </div>
+                        <div class="card-body"></div>
+                    </div>
+                </div>
+                
+                <!-- Claude unified synthesized response card -->
+                <div class="answer-card unified-card" data-ai="unified">
+                    <div class="card-header">
+                        <h3>
+                            <img src="/static/icons/claude.svg" alt="Claude" class="icon-ai" />
+                            <span data-i18n="unifiedAnswerTitle">الإجابة النهائية الموحدة والمعززة (Claude Synthesized)</span>
+                        </h3>
+                        <button class="btn-copy" data-i18n="copyBtn">نسخ</button>
+                    </div>
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="/static/app.js?v=5.3"></script>
+</body>
+</html>

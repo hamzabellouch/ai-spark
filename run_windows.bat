@@ -1,4 +1,9 @@
 @echo off
+if "%~1"=="-run" goto :run
+cmd /c "%~f0" -run
+goto :eof
+
+:run
 setlocal
 cd /d "%~dp0"
 
@@ -29,7 +34,7 @@ if "%PYTHON_CMD%"=="" (
 echo [AI Spark] Using Python command: "%PYTHON_CMD%"
 
 echo [AI Spark] Installing/updating requirements...
-%PYTHON_CMD% -m pip install -r requirements.txt
+%PYTHON_CMD% -m pip install -r src\requirements.txt
 if errorlevel 1 (
   echo ERROR: Failed to install Python requirements.
   pause
@@ -41,11 +46,18 @@ for /f "tokens=5" %%a in ('netstat -ano ^| findstr LISTENING ^| findstr :8000') 
   taskkill /f /pid %%a >nul 2>nul
 )
 
+:loop
 echo.
 echo Starting AI Spark on http://127.0.0.1:8000
 echo Keep this window open while using the program.
 echo.
-%PYTHON_CMD% main.py
+powershell -Command "cd src; & '%PYTHON_CMD%' main.py"
 
+:ask
+set "choice="
+set /p choice=Terminate AI Spark (y/n)? 
+if /i "%choice%"=="y" goto end
+if /i "%choice%"=="n" goto loop
+goto ask
 
-pause
+:end
