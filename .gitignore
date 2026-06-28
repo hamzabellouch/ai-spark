@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.env.local
+.venv*
+env/
+venv/
+ENV/
+
+# Database files
+*.db
+chat_history.db
+
+# Browser profiles
+chrome_dev_profile/
+profiles/
+
+# Logs and outputs
+*.log
+test_log.txt
+test_output.txt
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
