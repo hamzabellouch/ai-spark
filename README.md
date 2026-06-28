@@ -18,7 +18,7 @@ AI Spark is a desktop AI platform that allows users to send a single prompt to m
 
 The platform is designed to help students, researchers, developers, and professionals benefit from the strengths of different AI systems without switching between multiple applications.
 
-Currently available for Windows.
+Currently available for Windows, Linux & MacOS.
 
 
 
@@ -43,9 +43,9 @@ Supported providers:
 * Gemini
 * DeepSeek
 
-### DeepThink Mode
+### Spark Mode
 
-Broadcast a prompt to all available AI assistants and generate a final synthesized answer using Claude.
+Broadcast a prompt to all available AI assistants and generate a final synthesized answer using Claude (temporarily).
 
 ### Live Search
 
@@ -57,17 +57,9 @@ Quickly find previous conversations using the integrated sidebar search.
 * History browsing
 * One-click history clearing
 
-### Collapsible Sidebar
-
-A modern sidebar with smooth expand/collapse functionality for a cleaner workspace.
-
 ### Multilingual Interface
 
-Supported languages:
-
-* English
-* Arabic
-* French
+Supported languages: Arabic, English, French, ...
 
 ### Modern User Interface
 
@@ -94,25 +86,35 @@ screenshots/deepthink.png
 
 
 
-## Installation
-
-### Windows
+## Installation & Running
 
 1. Download the latest release.
 2. Extract the archive.
 3. Run:
 
+windows :
+
 ```bash
-AI Spark.exe
+run_windows.bat
 ```
 
+Linux :
+
+```bash
+run_linux.sh
+```
+
+MacOS :
+
+```bash
+run_macos.command
+```
 
 
 ## Requirements
 
-* Windows 10 or Windows 11
 * Internet connection
-* Supported AI service access
+* Browser : Chrome, Brave, Firefox, Edge, Opera.
 
 
 
@@ -122,52 +124,17 @@ AI Spark.exe
 2. Select a mode:
 
    * Instant Mode
-   * DeepThink Mode
+   * Spark Mode
 3. Submit your request.
 4. Review AI responses.
 5. Receive the final synthesized answer.
 
 
 
-## Current Release
+### <a name="Copyright©2026"></a> Copyright © 2026
 
-<h3 align="center">AI Spark v0.0.1-alpha</h3>
+Thank you for engaging with us. For inquiries or collaboration, please contact:  
+tknohamzacontact@gmail.com
 
-### Changes — June 16, 2026
-
-* Initial release (`0.0.1-alpha`)
-* Created the project base
-
-### Build Status
-
-```bash
-BUILD SUCCESSFUL
-```
-
-
-
-## Roadmap
-
-* Linux support
-* macOS support
-* Additional AI providers
-* File analysis
-* Voice interaction
-* Cloud synchronization
-* Advanced search capabilities
-
-
-
-## Author
-
-Hamza Bellouch
-
-GitHub: https://github.com/hamzabellouch
-
-LinkedIn: https://www.linkedin.com/in/hamzabellouch
-
-
-
-## License
-
-See the LICENSE file for licensing information.
+Stay connected and follow us on:  
+[Facebook](https://facebook.com/hamzabellouch1) | [Instagram](https://instagram.com/hamzabellouch0) | [Twitter](https://twitter.com/hamzabellouch0) | [Telegram](https://t.me/hammzabellouch) | [LinkedIn](https://www.linkedin.com/in/hamzabellouch)
