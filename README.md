@@ -79,9 +79,9 @@ AI Spark can connect to existing browser sessions when available, avoiding unnec
 Add screenshots here.
 
 ```text
-screenshots/home.png
-screenshots/chat.png
-screenshots/deepthink.png
+screenshots/1
+screenshots/2
+screenshots/3
 ```
 
 
@@ -129,6 +129,10 @@ run_macos.command
 4. Review AI responses.
 5. Receive the final synthesized answer.
 
+
+
+> [!WARNING]
+> There is always a possibility of error, so we assume no responsibility for any inaccuracies.
 
 
 ### <a name="Copyright©2026"></a> Copyright © 2026
