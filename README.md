@@ -1,16 +1,14 @@
 # AI Spark
 
-<p align="center">
-  <img src="assets/logo.png" alt="AI Spark Logo" width="120">
-</p>
-
 <h3 align="center">One Prompt. Multiple AI Models. One Unified Answer.</h3>
 
 <p align="center">
 Compare responses from multiple AI models side-by-side and generate a final unified answer.
 </p>
 
-
+<div align="center">
+  <img src="https://github.com/hamzabellouch/ai-spark/blob/main/AI%20Spark.jpg" width="800"/>
+</div>
 
 ## Overview
 
